@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model Gallery.Models.ViewModels.PageViewModel
+
+<link rel="stylesheet" href="~/Content/Gallery/blueimp-gallery.min.css" />
+
+<div id="blueimp-gallery"
+     class="blueimp-gallery blueimp-gallery-controls">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+
+<div style="margin-top: 17px;">
+    <div id="links">
+        @foreach (var item in Model.Paths)
+        {
+            <a href="@item">
+                <img src="@item" class="img-circle column" style="margin-bottom: 7px" />
+            </a>
+        }
+    </div>
+</div>
+
+<div class="galery-bar">
+    @for (int i = 0; i < Model.Pages; i++)
+    {
+        <div class="btn">
+            @Ajax.ActionLink("*", "PartialIndex", new { page = i + 1 }, new AjaxOptions { UpdateTargetId = "links" })
+        </div>
+    }
+</div>
+
+@Scripts.Render("~/Scripts/Gallery/custom/gallery-click.js")

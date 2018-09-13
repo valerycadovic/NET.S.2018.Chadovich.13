@@ -1,0 +1,8 @@
+﻿@model Gallery.Models.ViewModels.PageViewModel
+
+@foreach (var item in Model.Paths)
+{
+    <a href="@item">
+        <img src="@item" class="img-circle column" style="margin-bottom: 7px" />
+    </a>
+}
